@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Users, UserCog } from 'lucide-react';
+import { Users, UserCog, Monitor } from 'lucide-react';
 import { useState } from 'react';
 import HelpModal from '../../components/common/HelpModal';
 
@@ -39,6 +39,9 @@ export default function Landing() {
             </Link>
           </div>
         </div>
+        <Link to="/display/EN" target="_blank" rel="noopener noreferrer" className="mt-6 flex items-center justify-center gap-2 text-white/80 hover:text-white text-sm transition-opacity">
+          <Monitor className="w-5 h-5" /> View Public Queue Display
+        </Link>
       </div>
 
       <p className="absolute bottom-6 text-sm text-white/60 text-center">© 2026 Northwestern Samar State University. All rights reserved.</p>

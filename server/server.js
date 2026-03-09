@@ -29,7 +29,24 @@ app.get('/api/health', (req, res) => {
   res.json({ ok: true });
 });
 
+// Root: clarify that the UI runs on the frontend dev server
+app.get('/', (req, res) => {
+  res.type('text/plain').status(200).send(
+    'NWSSU Queue API is running. Use the frontend at http://localhost:5173 (run "npm run dev" from project root).'
+  );
+});
+
 const PORT = process.env.PORT || 3001;
-app.listen(PORT, () => {
+const server = app.listen(PORT, () => {
   console.log(`NWSSU Queue API running on http://localhost:${PORT}`);
+});
+
+server.on('error', (err) => {
+  if (err && err.code === 'EADDRINUSE') {
+    console.error(
+      `Port ${PORT} is already in use. Stop other processes on this port or set a different PORT env variable.`
+    );
+  } else {
+    console.error('Server error:', err);
+  }
 });

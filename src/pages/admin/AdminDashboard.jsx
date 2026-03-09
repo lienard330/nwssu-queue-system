@@ -7,6 +7,8 @@ import StatCard from '../../components/admin/StatCard';
 import ServiceOverviewTable from '../../components/admin/ServiceOverviewTable';
 import QuickActionCard from '../../components/admin/QuickActionCard';
 import CutOffWarningBanner from '../../components/admin/CutOffWarningBanner';
+import PriorityRequestsBanner from '../../components/admin/PriorityRequestsBanner';
+import BackendStatusBanner from '../../components/admin/BackendStatusBanner';
 
 export default function AdminDashboard() {
   const { auth } = useAuth();
@@ -20,6 +22,10 @@ export default function AdminDashboard() {
       <p className="text-xl font-semibold text-gray-700 mt-1">{getGreeting()}, {auth?.user?.name}!</p>
       <p className="text-sm text-gray-500 mt-1">Today's cut-off: {cutOffFormatted()} • Feb 26, 2026, 12:06 AM</p>
 
+      <BackendStatusBanner />
+      <div className="mt-4">
+        <PriorityRequestsBanner />
+      </div>
       <div className="mt-4">
         <CutOffWarningBanner cutOffTime={cutOffFormatted()} onExtend={() => {}} />
       </div>

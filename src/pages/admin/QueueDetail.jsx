@@ -9,6 +9,7 @@ import WaitingListTable from '../../components/admin/WaitingListTable';
 import EmergencyPauseBanner from '../../components/admin/EmergencyPauseBanner';
 import ConfirmModal from '../../components/common/ConfirmModal';
 import CreateWalkInModal from '../../components/admin/CreateWalkInModal';
+import PriorityRequestsBanner from '../../components/admin/PriorityRequestsBanner';
 
 export default function QueueDetail() {
   const { serviceId } = useParams();
@@ -181,6 +182,7 @@ export default function QueueDetail() {
       </div>
 
       {paused && <EmergencyPauseBanner onResume={handleResume} />}
+      {apiMode && <PriorityRequestsBanner />}
 
       {serving.length > 0 && (
         <div className="mb-4">

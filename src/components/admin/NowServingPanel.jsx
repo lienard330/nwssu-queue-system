@@ -1,7 +1,7 @@
 export default function NowServingPanel({ serving, onComplete, onMarkNoShow }) {
   return (
-    <div className="p-4 rounded-xl bg-amber-50 border border-amber-200">
-      <p className="text-sm font-semibold text-amber-800 mb-3">● NOW SERVING</p>
+    <div className="p-4 rounded-xl bg-amber-50 border border-amber-200 animate-fade-in">
+      <p className="text-sm font-semibold text-amber-800 mb-3 animate-pulse-soft">● NOW SERVING</p>
       <div className="grid grid-cols-2 gap-3">
         {serving.map((s) => (
           <div key={s.windowId || s.id || s.queueNum} className="p-3 rounded-lg bg-white border-2 border-amber-200">

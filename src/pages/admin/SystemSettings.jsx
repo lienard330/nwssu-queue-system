@@ -33,8 +33,15 @@ export default function SystemSettings() {
   const handleSaveAll = () => {
     updateSettings({ cutOffTime: cutOff, gracePeriod, notificationTrigger });
     if (apiMode) {
+      const serveFirst = parseInt(document.getElementById('carry-over-serve-first')?.value || '0', 10);
+      const expireDays = parseInt(document.getElementById('carry-over-expire')?.value || '3', 10);
       ['EN', 'CL', 'TR', 'IP'].forEach((id) => {
-        queueApi.updateServiceConfig(id, { cutoff_time: cutOff, grace_period_minutes: gracePeriod }).catch(() => {});
+        queueApi.updateServiceConfig(id, {
+          cutoff_time: cutOff,
+          grace_period_minutes: gracePeriod,
+          carry_over_serve_first: serveFirst,
+          carry_over_expire_days: expireDays,
+        }).catch(() => {});
       });
     }
     toast.success('Settings Saved', 'All settings saved successfully');
@@ -170,6 +177,32 @@ export default function SystemSettings() {
               <ToggleSwitch checked={settings.priorityQueueEnabled} onChange={(v) => updateSettings({ priorityQueueEnabled: v })} />
             </div>
           </div>
+          {apiMode && (
+            <>
+              <div className="p-4 rounded-xl border border-gray-200">
+                <p className="font-medium text-gray-900">Carry-Over: Serve First X</p>
+                <p className="text-xs text-gray-500 mt-1">Serve first N carry-over tickets before regular</p>
+                <input
+                  type="number"
+                  id="carry-over-serve-first"
+                  defaultValue={serviceConfigs.EN?.carry_over_serve_first ?? 0}
+                  min={0}
+                  className="mt-2 w-20 px-2 py-2 border rounded-lg"
+                />
+              </div>
+              <div className="p-4 rounded-xl border border-gray-200">
+                <p className="font-medium text-gray-900">Carry-Over Expire Days</p>
+                <p className="text-xs text-gray-500 mt-1">Carry-over tickets expire after N days</p>
+                <input
+                  type="number"
+                  id="carry-over-expire"
+                  defaultValue={serviceConfigs.EN?.carry_over_expire_days ?? 3}
+                  min={1}
+                  className="mt-2 w-20 px-2 py-2 border rounded-lg"
+                />
+              </div>
+            </>
+          )}
         </div>
         <button onClick={handleSaveAll} className="mt-4 px-4 py-2 rounded-lg bg-blue-600 text-white font-medium hover:bg-blue-700">
           Save Queue Parameters

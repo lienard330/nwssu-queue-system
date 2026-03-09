@@ -1,5 +1,5 @@
 import { NavLink, useNavigate } from 'react-router-dom';
-import { LayoutDashboard, ListOrdered, MonitorSpeaker, BarChart2, Shield, Settings, LogOut } from 'lucide-react';
+import { LayoutDashboard, ListOrdered, MonitorSpeaker, BarChart2, Shield, Settings, LogOut, ExternalLink } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 
 const navItems = [
@@ -48,6 +48,15 @@ export default function AdminSidebar() {
             <span>{item.label}</span>
           </NavLink>
         ))}
+        <a
+          href="/display/EN"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center gap-2 py-3 px-4 rounded-lg text-gray-600 hover:bg-gray-50"
+        >
+          <ExternalLink className="w-5 h-5" />
+          <span>Queue Display</span>
+        </a>
       </nav>
       <div className="p-3 border-t border-gray-100">
         <button onClick={handleLogout} className="flex items-center gap-2 py-3 px-4 w-full rounded-lg text-red-600 hover:bg-red-50">

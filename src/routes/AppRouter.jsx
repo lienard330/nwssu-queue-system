@@ -16,6 +16,8 @@ import ReportsAnalytics from '../pages/admin/ReportsAnalytics';
 import SystemLogs from '../pages/admin/SystemLogs';
 import SystemSettings from '../pages/admin/SystemSettings';
 import OperatorView from '../pages/admin/OperatorView';
+import StaffNotifications from '../pages/admin/StaffNotifications';
+import StaffProfile from '../pages/admin/StaffProfile';
 import StudentLayout from '../components/layout/StudentLayout';
 import AdminLayout from '../components/layout/AdminLayout';
 import StudentRoute from './StudentRoute';
@@ -70,6 +72,8 @@ export default function AppRouter() {
           <Route path="reports" element={<ReportsAnalytics />} />
           <Route path="logs" element={<SystemLogs />} />
           <Route path="settings" element={<SystemSettings />} />
+          <Route path="notifications" element={<StaffNotifications />} />
+          <Route path="profile" element={<StaffProfile />} />
         </Route>
 
         <Route path="*" element={<Navigate to="/" replace />} />

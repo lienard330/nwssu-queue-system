@@ -7,7 +7,7 @@ export default function QueueStatusCard({ position, totalInQueue, estWait, joine
   const isServing = position < 0;
 
   return (
-    <div className="mx-4 p-6 rounded-xl bg-white shadow-md">
+    <div className="mx-4 p-6 rounded-xl bg-white shadow-md animate-fade-in">
       <div className="flex flex-col items-center">
         <div
           className={`w-20 h-20 rounded-full flex items-center justify-center text-3xl font-bold ${
